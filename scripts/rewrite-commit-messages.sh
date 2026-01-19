@@ -23,7 +23,7 @@ git branch "$BACKUP_BRANCH"
 echo "✅ Created backup branch: $BACKUP_BRANCH"
 
 # Find the first commit we want to keep (before sensitive commits)
-FIRST_CLEAN_COMMIT=$(git log --oneline --grep="Ashley" --invert-grep | head -1 | cut -d' ' -f1)
+FIRST_CLEAN_COMMIT=$(git log --oneline --grep= --invert-grep | head -1 | cut -d' ' -f1)
 
 if [ -z "$FIRST_CLEAN_COMMIT" ]; then
     echo "❌ Could not find a clean commit to rebase from"
