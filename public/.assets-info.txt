@@ -1,0 +1,3 @@
+# Audio assets
+- music.mp3: Background music
+- page-turn.mp3: Page turn sound effect

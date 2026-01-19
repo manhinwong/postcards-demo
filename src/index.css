@@ -1,0 +1,272 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Caveat', cursive;
+  background-image: url('/photos/background.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Page turn animations */
+@keyframes pageFlipRight {
+  0% {
+    transform: perspective(2000px) rotateY(0deg);
+    transform-origin: left center;
+  }
+  100% {
+    transform: perspective(2000px) rotateY(-180deg);
+    transform-origin: left center;
+  }
+}
+
+@keyframes pageFlipLeft {
+  0% {
+    transform: perspective(2000px) rotateY(-180deg);
+    transform-origin: left center;
+  }
+  100% {
+    transform: perspective(2000px) rotateY(0deg);
+    transform-origin: left center;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.page-flip-right {
+  animation: pageFlipRight 0.8s ease-in-out forwards;
+}
+
+.page-flip-left {
+  animation: pageFlipLeft 0.8s ease-in-out forwards;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Paper texture overlay */
+.paper-texture {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+  background-size: 20px 20px;
+  position: relative;
+}
+
+.paper-texture::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(ellipse at top left, transparent 0%, rgba(139, 115, 85, 0.05) 100%),
+    radial-gradient(ellipse at bottom right, transparent 0%, rgba(201, 169, 97, 0.05) 100%);
+  pointer-events: none;
+}
+
+/* Vignette effect */
+.vignette {
+  position: relative;
+}
+
+.vignette::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Custom scrollbar for page content */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(139, 115, 85, 0.1);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(139, 115, 85, 0.3);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 115, 85, 0.5);
+}
+
+/* Loading and fade animations */
+@keyframes fadeInSlow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDelayed {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDelayedMore {
+  0% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes appFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceGentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--rotate, 0deg));
+  }
+  50% {
+    transform: translateY(-15px) rotate(var(--rotate, 0deg));
+  }
+}
+
+@keyframes floatDelayed {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--rotate, 0deg));
+  }
+  50% {
+    transform: translateY(-12px) rotate(var(--rotate, 0deg));
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--rotate, 0deg));
+  }
+  50% {
+    transform: translateY(-8px) rotate(var(--rotate, 0deg));
+  }
+}
+
+.app-fade-in {
+  animation: appFadeIn 1s ease-out forwards;
+}
+
+.animate-fade-in-slow {
+  animation: fadeInSlow 1.5s ease-out;
+}
+
+.animate-fade-in-delayed {
+  animation: fadeInDelayed 2s ease-out;
+}
+
+.animate-fade-in-delayed-more {
+  animation: fadeInDelayedMore 2.5s ease-out;
+}
+
+.animate-bounce-gentle {
+  animation: bounceGentle 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: floatDelayed 5s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+/* Polaroid frame styling */
+.polaroid-frame {
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+}
+
+.polaroid-frame .bg-white {
+  position: relative;
+}
+
+/* Dreamy sparkle animation */
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+
+/* Touch-friendly styles for mobile */
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .vignette::after {
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Ensure content is above background overlay */
+#root {
+  position: relative;
+  z-index: 1;
+}
